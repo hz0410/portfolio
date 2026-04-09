@@ -3,7 +3,19 @@ body {
 	   and use the OS’s UI font as the website font
 	 */
   font: 100%/1.5 system-ui;
-  max-width: 100px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
 }
+
+
+
+/* body {
+  /* Set line height to 1.5 times the font size
+	   and use the OS’s UI font as the website font
+	 */
+  /* font: 100%/1.5 system-ui;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+} */ 
