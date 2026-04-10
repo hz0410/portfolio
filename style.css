@@ -9,6 +9,30 @@ body {
   padding: 0 20px;
 }
 
+label,
+input,
+textarea,
+button {
+  font: inherit;
+  display: block;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-top: 15px;
+}
+
+
 nav {
   display: flex;
   gap: 20px;
