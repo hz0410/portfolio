@@ -28,6 +28,9 @@ nav a.current {
   padding-bottom: 0.1em;
   font-weight: bold;
 }
+nav a:hover {
+  background-color: pink;
+}
 
 
 
