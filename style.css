@@ -110,3 +110,74 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
+
+
+.resume-header {
+  margin-bottom: 2rem;
+}
+
+.resume-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.resume-summary {
+  max-width: 65ch;
+}
+
+.resume {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.resume section {
+  padding: 1rem 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.resume section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.resume article + article {
+  margin-top: 1rem;
+}
+
+.resume-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resume-item-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.resume-item-header time,
+.resume-item-header span {
+  color: var(--color-accent);
+  font-size: 0.95rem;
+}
+
+.resume p {
+  margin: 0.4rem 0 0;
+}
+
+.resume a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.resume a:hover {
+  text-decoration: underline;
+}
