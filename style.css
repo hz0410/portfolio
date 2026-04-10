@@ -9,12 +9,22 @@ body {
   padding: 0 20px;
 }
 
-label,
+
 input,
 textarea,
 button {
   font: inherit;
   display: block;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+label{
+  display:contents;
 }
 
 input,
@@ -23,7 +33,13 @@ textarea {
   box-sizing: border-box;
 }
 
+textarea,
+button {
+  grid-column: 1 / -1;
+}
+
 label {
+  display: contents;
   margin-top: 10px;
   margin-bottom: 5px;
 }
@@ -39,6 +55,8 @@ button {
   border: none;
   border-radius: 5px;
 }
+
+
 
 
 nav {
@@ -64,6 +82,4 @@ nav a:hover {
   background-color: pink;
 }
 
-
-
-
+f
