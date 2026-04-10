@@ -1,24 +1,6 @@
-/* body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
-  /* font: 100%/1.5 system-ui;
-  max-width: 800px;
-  margin: 0 auto;
-  padding:0 20px;
-} */ 
-
-
-
-/* body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
-  /* font: 100%/1.5 system-ui;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-} */ 
+:root{
+  --color-accent: #6b7280
+}
 
 body {
   font: 100%/1.5 system-ui;
@@ -30,7 +12,7 @@ body {
 nav {
   display: flex;
   gap: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-accent);
   margin-bottom: 20px;
 }
 
@@ -42,7 +24,7 @@ nav a {
   color: inherit;
 }
 nav a.current {
-  border-bottom: 0.4em solid #999;
+  border-bottom: 0.4em solid var(--color-accent);
   padding-bottom: 0.1em;
   font-weight: bold;
 }
