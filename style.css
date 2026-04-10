@@ -34,9 +34,16 @@ nav {
 }
 
 nav a {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
   text-decoration: none;
-  color: inherit;
+  color: black;
 }
 nav a.current {
   font-weight: bold;
 }
+
+
+
+
