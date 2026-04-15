@@ -5,26 +5,58 @@ function $$(selector, context = document) {
 }
 
 
-let navLinks = $$("nav a");
+// let navLinks = $$("nav a");
 
-let currentLink = navLinks.find(
-  (a) => a.host === location.host && a.pathname === location.pathname
-);
+// let currentLink = navLinks.find(
+//   (a) => a.host === location.host && a.pathname === location.pathname
+// );
 
-currentLink?.classList.add("current");
+// currentLink?.classList.add("current");
 
-// const navLinks = $$("nav a");
+let pages = [
+  { url: "", title: "Home" },
+  { url: "projects/", title: "Projects" },
+  { url: "contact/", title: "Contact" },
+  { url: "resume/", title: "Resume" },
+  { url: "https://github.com/hz0410", title: "Profile" }
+];
 
-// navLinks.forEach(link => {
-//   if (link.host !== location.host) return;
+/* -------------------------
+   Create nav element
+------------------------- */
+let nav = document.createElement("nav");
+document.body.prepend(nav);
 
-//   let linkPath = new URL(link.href).pathname;
-//   let currentPath = location.pathname;
+/* -------------------------
+   Fix path (important)
+------------------------- */
+const BASE_PATH =
+  location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? "/"
+    : "/portfolio/"; // change to "/your-repo-name/" if using GitHub Pages
 
-//   linkPath = linkPath.replace(/index\.html$/, "");
-//   currentPath = currentPath.replace(/index\.html$/, "");
+/* -------------------------
+   Create links
+------------------------- */
+for (let p of pages) {
+  let url = p.url;
+  let title = p.title;
 
-//   if (linkPath === currentPath) {
-//     link.classList.add("current");
+  nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
+
+//   // handle relative URLs
+//   if (!url.startsWith("http")) {
+//     url = BASE_PATH + url;
 //   }
-// });
+
+//   let a = document.createElement("a");
+//   a.href = url;
+//   a.textContent = title;
+
+//   // highlight current page
+//   if (a.host === location.host && a.pathname === location.pathname) {
+//     a.classList.add("current");
+//   }
+
+//   nav.appendChild(a);
+}
