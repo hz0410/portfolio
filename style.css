@@ -2,12 +2,17 @@
   --color-accent: #6b7280
 }
 
+html {
+  color-scheme: light dark;
+}
+
 body {
   font: 100%/1.5 system-ui;
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
 }
+
 
 
 input,
