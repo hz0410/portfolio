@@ -33,7 +33,7 @@ document.body.prepend(nav);
 const BASE_PATH =
   location.hostname === "localhost" || location.hostname === "127.0.0.1"
     ? "/"
-    : "/hz0410.github.io/portfolio/"; // change to "/your-repo-name/" if using GitHub Pages
+    : "/portfolio/"; // change to "/your-repo-name/" if using GitHub Pages
 
 /* -------------------------
    Create links
