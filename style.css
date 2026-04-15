@@ -6,19 +6,14 @@ html {
   color-scheme: light dark;
 }
 
-document.body.insertAdjacentHTML(
-  "afterbegin",
-  `
-  <label class="color-scheme">
-    Theme:
-    <select>
-      <option value="light dark">Automatic</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  </label>`,
-);
+body {
+  font: 100%/1.5 system-ui;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
+/* Dark mode switch */
 .color-scheme {
   position: absolute;
   top: 1rem;
@@ -29,13 +24,6 @@ document.body.insertAdjacentHTML(
 .color-scheme select {
   margin-left: 0.5em;
   font: inherit;
-}
-
-body {
-  font: 100%/1.5 system-ui;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 input,
