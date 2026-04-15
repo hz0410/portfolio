@@ -30,21 +30,20 @@ document.body.insertAdjacentHTML(
 //   );
 // });
 
-const colorSchemeSelect = document.querySelector("#theme-select");
+const select = document.querySelector(".color-scheme select");
 
 if ("colorScheme" in localStorage) {
-  const saved = localStorage.colorScheme;
-
-  document.documentElement.style.setProperty("color-scheme", saved);
-  select.value = saved; 
+  document.documentElement.style.setProperty(
+    "color-scheme",
+    localStorage.colorScheme
+  );
+  select.value = localStorage.colorScheme;
 }
 
 select.addEventListener("input", function (event) {
   const value = event.target.value;
-
   document.documentElement.style.setProperty("color-scheme", value);
-
-  localStorage.colorScheme = value; 
+  localStorage.colorScheme = value;
 });
 
 let pages = [
