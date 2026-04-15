@@ -19,6 +19,12 @@ document.body.insertAdjacentHTML(
   `
 );
 
+const colorSchemeSelect = document.querySelector("#theme-select");
+
+colorSchemeSelect.addEventListener("input", function () {
+  document.documentElement.style.colorScheme = colorSchemeSelect.value;
+});
+
 let pages = [
   { url: "", title: "Home" },
   { url: "projects/", title: "Projects" },
