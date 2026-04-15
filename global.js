@@ -33,7 +33,7 @@ document.body.prepend(nav);
 const BASE_PATH =
   location.hostname === "localhost" || location.hostname === "127.0.0.1"
     ? "/"
-    : "/portfolio/"; // change to "/your-repo-name/" if using GitHub Pages
+    : "/hz0410.github.io/portfolio/"; // change to "/your-repo-name/" if using GitHub Pages
 
 /* -------------------------
    Create links
@@ -42,21 +42,21 @@ for (let p of pages) {
   let url = p.url;
   let title = p.title;
 
-  nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
 
-//   // handle relative URLs
-//   if (!url.startsWith("http")) {
-//     url = BASE_PATH + url;
-//   }
 
-//   let a = document.createElement("a");
-//   a.href = url;
-//   a.textContent = title;
+  // handle relative URLs
+  if (!url.startsWith("http")) {
+    url = BASE_PATH + url;
+  }
 
-//   // highlight current page
-//   if (a.host === location.host && a.pathname === location.pathname) {
-//     a.classList.add("current");
-//   }
+  let a = document.createElement("a");
+  a.href = url;
+  a.textContent = title;
 
-//   nav.appendChild(a);
+  // highlight current page
+  if (a.host === location.host && a.pathname === location.pathname) {
+    a.classList.add("current");
+  }
+
+  nav.appendChild(a);
 }
