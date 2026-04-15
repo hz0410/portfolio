@@ -1,5 +1,5 @@
-:root{
-  --color-accent: #6b7280
+:root {
+  --color-accent: #6b7280;
 }
 
 html {
@@ -12,8 +12,6 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
-
-
 
 input,
 textarea,
@@ -28,8 +26,10 @@ form {
   gap: 1em;
 }
 
-label{
-  display:contents;
+label {
+  display: contents;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 input,
@@ -43,32 +43,22 @@ button {
   grid-column: 1 / -1;
 }
 
-label {
-  display: contents;
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-
 button {
   display: block;
   width: 100%;
   padding: 10px;
   margin-top: 15px;
-
-  font: inherit;           
-  background-color: #fbcfe8; 
+  font: inherit;
   border: none;
   border-radius: 5px;
+  background-color: color-mix(in oklch, pink, canvas 85%);
+  color: inherit;
 }
 
-
-
-
 nav {
+  --border-color: oklch(50% 10% 200 / 40%);
   display: flex;
   gap: 20px;
-  /* border-bottom: 1px solid var(--color-accent); */
-  --border-color: oklch(50% 10% 200 / 40%);
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 20px;
 }
@@ -80,14 +70,15 @@ nav a {
   text-decoration: none;
   color: inherit;
 }
+
 nav a.current {
-  /* border-bottom: 0.4em solid var(--color-accent); */
   border-bottom: 0.4em solid var(--border-color);
   padding-bottom: 0.1em;
   font-weight: bold;
 }
+
 nav a:hover {
-  background-color: pink;
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 .projects {
@@ -114,11 +105,15 @@ h1 {
   font-size: 400%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
-
 
 .resume-header {
   margin-bottom: 2rem;
@@ -142,16 +137,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .resume section {
   padding: 1rem 1.25rem;
-  border: 1px solid #ddd;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 80%);
   border-radius: 10px;
-  background: #fafafa;
+  background: color-mix(in oklch, var(--color-accent), canvas 92%);
 }
 
 .resume section h2 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.4rem;
-  color: #333;
+  color: inherit;
 }
 
 .resume article + article {
@@ -182,7 +177,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .resume a {
-  color: #2563eb;
+  color: LinkText;
   text-decoration: none;
 }
 
