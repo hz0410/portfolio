@@ -67,7 +67,9 @@ button {
 nav {
   display: flex;
   gap: 20px;
-  border-bottom: 1px solid var(--color-accent);
+  /* border-bottom: 1px solid var(--color-accent); */
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: 20px;
 }
 
@@ -79,7 +81,8 @@ nav a {
   color: inherit;
 }
 nav a.current {
-  border-bottom: 0.4em solid var(--color-accent);
+  /* border-bottom: 0.4em solid var(--color-accent); */
+  border-bottom: 0.4em solid var(--border-color);
   padding-bottom: 0.1em;
   font-weight: bold;
 }
