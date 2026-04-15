@@ -21,13 +21,19 @@ document.body.insertAdjacentHTML(
 
 const colorSchemeSelect = document.querySelector("#theme-select");
 
-colorSchemeSelect.addEventListener("input", function (event) {
-    console.log("color scheme changed to", event.target.value);
+if ("colorScheme" in localStorage) {
+  const saved = localStorage.colorScheme;
 
-  document.documentElement.style.setProperty(
-    "color-scheme",
-    event.target.value
-  );
+  document.documentElement.style.setProperty("color-scheme", saved);
+  select.value = saved; 
+}
+
+select.addEventListener("input", function (event) {
+  const value = event.target.value;
+
+  document.documentElement.style.setProperty("color-scheme", value);
+
+  localStorage.colorScheme = value; 
 });
 
 let pages = [
