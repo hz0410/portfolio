@@ -21,8 +21,13 @@ document.body.insertAdjacentHTML(
 
 const colorSchemeSelect = document.querySelector("#theme-select");
 
-colorSchemeSelect.addEventListener("input", function () {
-  document.documentElement.style.colorScheme = colorSchemeSelect.value;
+colorSchemeSelect.addEventListener("input", function (event) {
+    console.log("color scheme changed to", event.target.value);
+
+  document.documentElement.style.setProperty(
+    "color-scheme",
+    event.target.value
+  );
 });
 
 let pages = [
