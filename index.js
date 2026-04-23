@@ -3,8 +3,8 @@ const projects = await fetchJSON('./lib/projects.json');
 const latestProjects = projects.slice(0, 3);
 const projectsContainer = document.querySelector('.projects');
 renderProjects(latestProjects, projectsContainer, 'h2');
-const githubData = await fetchGitHubData('giorgianicolaou');
-// const githubData = await fetchGitHubData('your-github-username');
+// const githubData = await fetchGitHubData('giorgianicolaou');
+const githubData = await fetchGitHubData('your-github-username');
 
 const profileStats = document.querySelector('#profile-stats');
 if (profileStats) {
@@ -17,3 +17,4 @@ if (profileStats) {
         </dl>
     `;
 }
+
