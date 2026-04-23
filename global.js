@@ -142,21 +142,21 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 }
 
 
-export async function fetchGithubData(username) {
-  try {
-    const response = await fetch(`https://api.github.com/users/${username}/repos`);
+// export async function fetchGithubData(username) {
+//   try {
+//     const response = await fetch(`https://api.github.com/users/${username}/repos`);
 
-    if (!response.ok) {
-      throw new Error(`GitHub fetch failed: ${response.statusText}`);
-    }
+//     if (!response.ok) {
+//       throw new Error(`GitHub fetch failed: ${response.statusText}`);
+//     }
 
-    const data = await response.json();
-    return data;
+//     const data = await response.json();
+//     return data;
 
-  } catch (error) {
-    console.error('Error fetching GitHub data:', error);
-  }
-}
+//   } catch (error) {
+//     console.error('Error fetching GitHub data:', error);
+//   }
+// }
 
 
 export async function fetchGitHubData(username) {
