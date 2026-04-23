@@ -157,3 +157,8 @@ export async function fetchGithubData(username) {
     console.error('Error fetching GitHub data:', error);
   }
 }
+
+
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}
