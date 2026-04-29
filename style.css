@@ -130,6 +130,13 @@ nav a:hover {
   width: 100%;
 }
 
+.project-year {
+  color: gray;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
 h1 {
   font-size: 400%;
 }

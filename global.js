@@ -105,71 +105,72 @@ export async function fetchJSON(url) {
   }
 }
 
-export function renderProjects(projects, container, headingLevel = 'h2') {
-    container.innerHTML = '';
+// export function renderProjects(projects, container, headingLevel = 'h2') {
+//     container.innerHTML = '';
 
-    projects.forEach(project => {
-        const article = document.createElement('article');
+//     projects.forEach(project => {
+//         const article = document.createElement('article');
 
-        const title = document.createElement(headingLevel);
-        title.textContent = project.title;
+//         const title = document.createElement(headingLevel);
+//         title.textContent = project.title;
 
-        // ✅ ADD YEAR HERE
-        const year = document.createElement('p');
-        year.classList.add('project-year');
-        year.textContent = project.year;
+//         // ✅ ADD YEAR HERE
+//         const year = document.createElement('p');
+//         year.classList.add('project-year');
+//         year.textContent = project.year;
 
-        const img = document.createElement('img');
-        img.src = project.image;
-        img.alt = project.title;
+//         const img = document.createElement('img');
+//         img.src = project.image;
+//         img.alt = project.title;
 
-        const desc = document.createElement('p');
-        desc.textContent = project.description;
+//         const desc = document.createElement('p');
+//         desc.textContent = project.description;
 
-        article.appendChild(title);
-        article.appendChild(year);   // 👈 IMPORTANT (this is where year is added)
-        article.appendChild(img);
-        article.appendChild(desc);
+//         article.appendChild(title);
+//         article.appendChild(year);   // 👈 IMPORTANT (this is where year is added)
+//         article.appendChild(img);
+//         article.appendChild(desc);
 
-        container.appendChild(article);
-    });
-}
-
-// export function renderProjects(projects, containerElement, headingLevel = 'h2') {
-//   // Validate inputs
-//   if (!Array.isArray(projects)) {
-//     console.error('Projects data is not an array');
-//     return;
-//   }
-
-//   if (!containerElement) {
-//     console.error('Container element not found');
-//     return;
-//   }
-
-//   // ✅ Validate heading level
-//   const validHeadings = ['h1','h2','h3','h4','h5','h6'];
-//   if (!validHeadings.includes(headingLevel)) {
-//     console.warn(`Invalid heading level "${headingLevel}", defaulting to h2`);
-//     headingLevel = 'h2';
-//   }
-
-//   // Clear container
-//   containerElement.innerHTML = '';
-
-//   // Render each project
-//   projects.forEach((project) => {
-//     const article = document.createElement('article');
-
-//     article.innerHTML = `
-//       <${headingLevel}>${project.title}</${headingLevel}>
-//       <img src="${project.image}" alt="${project.title}">
-//       <p>${project.description}</p>
-//     `;
-
-//     containerElement.appendChild(article);
-//   });
+//         container.appendChild(article);
+//     });
 // }
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  // Validate inputs
+  if (!Array.isArray(projects)) {
+    console.error('Projects data is not an array');
+    return;
+  }
+
+  if (!containerElement) {
+    console.error('Container element not found');
+    return;
+  }
+
+  // ✅ Validate heading level
+  const validHeadings = ['h1','h2','h3','h4','h5','h6'];
+  if (!validHeadings.includes(headingLevel)) {
+    console.warn(`Invalid heading level "${headingLevel}", defaulting to h2`);
+    headingLevel = 'h2';
+  }
+
+  // Clear container
+  containerElement.innerHTML = '';
+
+  // Render each project
+  projects.forEach((project) => {
+    const article = document.createElement('article');
+
+    article.innerHTML = `
+    <${headingLevel}>${project.title}</${headingLevel}>
+    <p class="project-year">${project.year}</p>
+    <img src="${project.image}" alt="${project.title}">
+    <p>${project.description}</p>
+  `;
+
+    containerElement.appendChild(article);
+  });
+}
 
 
 // export async function fetchGithubData(username) {
