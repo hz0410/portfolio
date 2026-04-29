@@ -105,40 +105,70 @@ export async function fetchJSON(url) {
   }
 }
 
-export function renderProjects(projects, containerElement, headingLevel = 'h2') {
-  // Validate inputs
-  if (!Array.isArray(projects)) {
-    console.error('Projects data is not an array');
-    return;
-  }
+export function renderProjects(projects, container, headingLevel = 'h2') {
+    container.innerHTML = '';
 
-  if (!containerElement) {
-    console.error('Container element not found');
-    return;
-  }
+    projects.forEach(project => {
+        const article = document.createElement('article');
 
-  // ✅ Validate heading level
-  const validHeadings = ['h1','h2','h3','h4','h5','h6'];
-  if (!validHeadings.includes(headingLevel)) {
-    console.warn(`Invalid heading level "${headingLevel}", defaulting to h2`);
-    headingLevel = 'h2';
-  }
+        const title = document.createElement(headingLevel);
+        title.textContent = project.title;
 
-  // Clear container
-  containerElement.innerHTML = '';
+        // ✅ ADD YEAR HERE
+        const year = document.createElement('p');
+        year.classList.add('project-year');
+        year.textContent = project.year;
 
-  // Render each project
-  projects.forEach((project) => {
-    const article = document.createElement('article');
+        const img = document.createElement('img');
+        img.src = project.image;
+        img.alt = project.title;
 
-    article.innerHTML = `
-      <${headingLevel}>${project.title}</${headingLevel}>
-      <img src="${project.image}" alt="${project.title}">
-      <p>${project.description}</p>
-    `;
+        const desc = document.createElement('p');
+        desc.textContent = project.description;
 
-    containerElement.appendChild(article);
-  });
+        article.appendChild(title);
+        article.appendChild(year);   // 👈 IMPORTANT (this is where year is added)
+        article.appendChild(img);
+        article.appendChild(desc);
+
+        container.appendChild(article);
+    });
+}
+
+// export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+//   // Validate inputs
+//   if (!Array.isArray(projects)) {
+//     console.error('Projects data is not an array');
+//     return;
+//   }
+
+//   if (!containerElement) {
+//     console.error('Container element not found');
+//     return;
+//   }
+
+//   // ✅ Validate heading level
+//   const validHeadings = ['h1','h2','h3','h4','h5','h6'];
+//   if (!validHeadings.includes(headingLevel)) {
+//     console.warn(`Invalid heading level "${headingLevel}", defaulting to h2`);
+//     headingLevel = 'h2';
+//   }
+
+//   // Clear container
+//   containerElement.innerHTML = '';
+
+//   // Render each project
+//   projects.forEach((project) => {
+//     const article = document.createElement('article');
+
+//     article.innerHTML = `
+//       <${headingLevel}>${project.title}</${headingLevel}>
+//       <img src="${project.image}" alt="${project.title}">
+//       <p>${project.description}</p>
+//     `;
+
+//     containerElement.appendChild(article);
+//   });
 }
 
 
