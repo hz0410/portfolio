@@ -105,36 +105,6 @@ export async function fetchJSON(url) {
   }
 }
 
-// export function renderProjects(projects, container, headingLevel = 'h2') {
-//     container.innerHTML = '';
-
-//     projects.forEach(project => {
-//         const article = document.createElement('article');
-
-//         const title = document.createElement(headingLevel);
-//         title.textContent = project.title;
-
-//         // ✅ ADD YEAR HERE
-//         const year = document.createElement('p');
-//         year.classList.add('project-year');
-//         year.textContent = project.year;
-
-//         const img = document.createElement('img');
-//         img.src = project.image;
-//         img.alt = project.title;
-
-//         const desc = document.createElement('p');
-//         desc.textContent = project.description;
-
-//         article.appendChild(title);
-//         article.appendChild(year);   // 👈 IMPORTANT (this is where year is added)
-//         article.appendChild(img);
-//         article.appendChild(desc);
-
-//         container.appendChild(article);
-//     });
-// }
-
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   // Validate inputs
   if (!Array.isArray(projects)) {
