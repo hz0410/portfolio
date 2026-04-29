@@ -169,7 +169,7 @@ export function renderProjects(projects, container, headingLevel = 'h2') {
 
 //     containerElement.appendChild(article);
 //   });
-}
+// }
 
 
 // export async function fetchGithubData(username) {
