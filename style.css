@@ -119,23 +119,23 @@ nav a:hover {
 .projects article {
   display: grid;
   grid-template-rows: subgrid;
-  grid-row: span 3;
+  grid-row: span 4;
 }
 
 .projects h2 {
   margin: 0;
 }
 
+.project-year {
+  color: gray;
+  font-size: 0.9rem;
+  margin:0;
+}
+
 .projects img {
   width: 100%;
 }
 
-.project-year {
-  color: gray;
-  font-size: 0.9rem;
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
-}
 
 h1 {
   font-size: 400%;
