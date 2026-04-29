@@ -110,7 +110,7 @@ nav a:hover {
   background-color: pink;
 }
 
-.projects {
+/* .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 1em;
@@ -134,7 +134,39 @@ nav a:hover {
 
 .projects img {
   width: 100%;
+} */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 2em;
 }
+
+.projects article {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.projects h2 {
+  margin: 0;
+}
+
+.projects img {
+  width: 100%;
+  display: block;
+}
+
+.projects article p {
+  margin: 0;
+}
+
+.project-year {
+  color: gray;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 
 
 h1 {
