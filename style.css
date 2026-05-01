@@ -136,6 +136,14 @@ nav a:hover {
   width: 100%;
 } */
 
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+
+
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -270,8 +278,3 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-#projects-pie-plot {
-  max-width: 20em;
-  margin-block: 2em;
-  overflow: visible;
-}
