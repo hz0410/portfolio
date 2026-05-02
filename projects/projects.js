@@ -2,8 +2,15 @@ import { fetchJSON, renderProjects } from '../global.js';
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 const projects = await fetchJSON('../lib/projects.json');
 
-let sliceGenerator = d3.pie()
-  .value(d => d.value);
+let rolledData = d3.rollups(
+  projects,
+  v => v.length,
+  d => d.year
+);
+
+let data = rolledData.map(([year, count]) => {
+  return { value: count, label: year };
+});
 const projectsContainer = document.querySelector('.projects');
 renderProjects(projects, projectsContainer, 'h2');
 
