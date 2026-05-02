@@ -7,8 +7,8 @@ renderProjects(projects, projectsContainer, 'h2');
 // Pie chart
 const svg = d3.select('#projects-pie-plot');
 
-let data = [1, 2];
-let colors = ['gold', 'purple'];
+let data = [1, 2, 3, 4, 5, 5];
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 let arcGenerator = d3.arc()
   .innerRadius(0)
@@ -21,5 +21,6 @@ svg.selectAll('path')
   .data(arcData)
   .join('path')
   .attr('d', arcGenerator)
-  .attr('fill', (d, i) => colors[i]);
+//   .attr('fill', (d, i) => colors[i]);
+  .attr('fill', (d, i) => colors(i));
 
