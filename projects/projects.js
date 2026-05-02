@@ -8,118 +8,83 @@ const svg = d3.select('#projects-pie-plot');
 const legend = d3.select('.legend');
 
 let query = '';
-let filteredProjects = projects;
+let selectedYear = null;
 
-let colors = d3.scaleOrdinal(d3.schemeTableau10);
+const colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-let arcGenerator = d3.arc()
+const arcGenerator = d3.arc()
   .innerRadius(0)
   .outerRadius(50);
 
-let sliceGenerator = d3.pie()
+const sliceGenerator = d3.pie()
   .value(d => d.value);
 
-// function renderPieChart(projectsToRender) {
-//   let rolledData = d3.rollups(
-//     projectsToRender,
-//     v => v.length,
-//     d => d.year
-//   );
+function getFilteredProjects() {
+  let filtered = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
 
-//   let data = rolledData.map(([year, count]) => {
-//     return { value: count, label: year };
-//   });
+  if (selectedYear) {
+    filtered = filtered.filter(project => project.year == selectedYear);
+  }
 
-//   let arcData = sliceGenerator(data);
-
-//   svg.selectAll('path')
-//     .data(arcData)
-//     .join('path')
-//     .attr('d', arcGenerator)
-//     .attr('fill', (d, i) => colors(i));
-
-//   legend.selectAll('li')
-//     .data(data)
-//     .join('li')
-//     .attr('style', (d, i) => `--color:${colors(i)}`)
-//     .html(d => `
-//       <span class="swatch"></span>
-//       ${d.label} <em>(${d.value})</em>
-//     `);
-// }
+  return filtered;
+}
 
 function renderPieChart(projectsGiven) {
-  let rolledData = d3.rollups(
+  const rolledData = d3.rollups(
     projectsGiven,
     v => v.length,
     d => d.year
   );
 
-  let data = rolledData.map(([year, count]) => {
+  const data = rolledData.map(([year, count]) => {
     return { value: count, label: year };
   });
 
-  let arcGenerator = d3.arc()
-    .innerRadius(0)
-    .outerRadius(50);
+  const arcData = sliceGenerator(data);
 
-  let sliceGenerator = d3.pie()
-    .value(d => d.value);
-
-  let arcData = sliceGenerator(data);
-
-  // clear old chart and legend
   svg.selectAll('path').remove();
   legend.selectAll('li').remove();
 
-  // render pie slices
   svg.selectAll('path')
     .data(arcData)
     .join('path')
     .attr('d', arcGenerator)
-    .attr('fill', (d, i) => colors(i));
+    .attr('fill', (d, i) => colors(i))
+    .attr('class', d => d.data.label == selectedYear ? 'selected' : '')
+    .on('click', (event, d) => {
+      selectedYear = selectedYear == d.data.label ? null : d.data.label;
+      updateDisplay();
+    });
 
-  // render legend
   legend.selectAll('li')
     .data(data)
     .join('li')
     .attr('style', (d, i) => `--color:${colors(i)}`)
+    .attr('class', d => d.label == selectedYear ? 'selected' : '')
     .html(d => `
       <span class="swatch"></span>
       ${d.label} <em>(${d.value})</em>
-    `);
+    `)
+    .on('click', (event, d) => {
+      selectedYear = selectedYear == d.label ? null : d.label;
+      updateDisplay();
+    });
 }
-
 
 function updateDisplay() {
-//   filteredProjects = projects.filter((project) => {
-//     let values = Object.values(project).join('\n').toLowerCase();
-//     return values.includes(query.toLowerCase());
-//   });
-  filteredProjects = projects.filter((project) => {
-    return project.title.toLowerCase().includes(query.toLowerCase());
-  });
+  const filteredProjects = getFilteredProjects();
 
   renderProjects(filteredProjects, projectsContainer, 'h2');
   renderPieChart(filteredProjects);
 }
 
-// Initial render
 updateDisplay();
 
-// Search interaction
-// searchInput.addEventListener('input', (event) => {
-//   query = event.target.value;
-//   updateDisplay();
-// });
 searchInput.addEventListener('input', (event) => {
   query = event.target.value;
-
-  let filteredProjects = projects.filter((project) => {
-    let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query.toLowerCase());
-  });
-
-  renderProjects(filteredProjects, projectsContainer, 'h2');
-  renderPieChart(filteredProjects);
+  selectedYear = null;
+  updateDisplay();
 });
