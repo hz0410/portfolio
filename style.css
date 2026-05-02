@@ -307,9 +307,14 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-block: 2rem;
 }
 
-.chart-container .legend {
+/* VERY IMPORTANT */
+#projects-pie-plot {
+  width: 250px;   /* or 20em */
+  height: auto;
+}
+
+.legend {
   flex: 1;
 }
