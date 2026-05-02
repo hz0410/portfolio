@@ -302,3 +302,14 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color);
   border-radius: 50%;
 }
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-block: 2rem;
+}
+
+.chart-container .legend {
+  flex: 1;
+}
