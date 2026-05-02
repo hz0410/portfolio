@@ -49,9 +49,12 @@ function renderPieChart(projectsToRender) {
 }
 
 function updateDisplay() {
+//   filteredProjects = projects.filter((project) => {
+//     let values = Object.values(project).join('\n').toLowerCase();
+//     return values.includes(query.toLowerCase());
+//   });
   filteredProjects = projects.filter((project) => {
-    let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query.toLowerCase());
+    return project.title.toLowerCase().includes(query.toLowerCase());
   });
 
   renderProjects(filteredProjects, projectsContainer, 'h2');
