@@ -19,17 +19,21 @@ const arcGenerator = d3.arc()
 const sliceGenerator = d3.pie()
   .value(d => d.value);
 
-function getFilteredProjects() {
-  let filtered = projects.filter((project) => {
+function getSearchFilteredProjects() {
+  return projects.filter((project) => {
     let values = Object.values(project).join('\n').toLowerCase();
     return values.includes(query.toLowerCase());
   });
+}
+
+function getVisibleProjects() {
+  let searchFiltered = getSearchFilteredProjects();
 
   if (selectedYear) {
-    filtered = filtered.filter(project => project.year == selectedYear);
+    return searchFiltered.filter(project => project.year == selectedYear);
   }
 
-  return filtered;
+  return searchFiltered;
 }
 
 function renderPieChart(projectsGiven) {
@@ -75,10 +79,14 @@ function renderPieChart(projectsGiven) {
 }
 
 function updateDisplay() {
-  const filteredProjects = getFilteredProjects();
+  const searchFilteredProjects = getSearchFilteredProjects();
+  const visibleProjects = getVisibleProjects();
 
-  renderProjects(filteredProjects, projectsContainer, 'h2');
-  renderPieChart(filteredProjects);
+  // Project cards show selected year only
+  renderProjects(visibleProjects, projectsContainer, 'h2');
+
+  // Pie chart still shows all years from search results
+  renderPieChart(searchFilteredProjects);
 }
 
 updateDisplay();
