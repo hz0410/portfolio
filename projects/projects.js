@@ -3,7 +3,7 @@ import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 const projects = await fetchJSON('../lib/projects.json');
 
 let rolledData = d3.rollups(
-  projects,
+  filteredProjects,
   v => v.length,
   d => d.year
 );
@@ -11,8 +11,13 @@ let rolledData = d3.rollups(
 let data = rolledData.map(([year, count]) => {
   return { value: count, label: year };
 });
+
+let query = '';
+let filteredProjects = projects;
+
 const projectsContainer = document.querySelector('.projects');
-renderProjects(projects, projectsContainer, 'h2');
+// renderProjects(projects, projectsContainer, 'h2');
+renderProjects(filteredProjects, projectsContainer, 'h2');
 
 // Pie chart
 const svg = d3.select('#projects-pie-plot');
@@ -38,6 +43,18 @@ svg.selectAll('path')
   .attr('fill', (d, i) => colors(i));
 
 let legend = d3.select('.legend');
+
+const searchInput = document.querySelector('.searchBar');
+
+searchInput.addEventListener('input', (event) => {
+  query = event.target.value.toLowerCase();
+
+  filteredProjects = projects.filter((project) =>
+    project.title.toLowerCase().includes(query)
+  );
+
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+});
 
 data.forEach((d, idx) => {
   legend.append('li')
