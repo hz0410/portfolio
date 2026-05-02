@@ -19,9 +19,38 @@ let arcGenerator = d3.arc()
 let sliceGenerator = d3.pie()
   .value(d => d.value);
 
-function renderPieChart(projectsToRender) {
+// function renderPieChart(projectsToRender) {
+//   let rolledData = d3.rollups(
+//     projectsToRender,
+//     v => v.length,
+//     d => d.year
+//   );
+
+//   let data = rolledData.map(([year, count]) => {
+//     return { value: count, label: year };
+//   });
+
+//   let arcData = sliceGenerator(data);
+
+//   svg.selectAll('path')
+//     .data(arcData)
+//     .join('path')
+//     .attr('d', arcGenerator)
+//     .attr('fill', (d, i) => colors(i));
+
+//   legend.selectAll('li')
+//     .data(data)
+//     .join('li')
+//     .attr('style', (d, i) => `--color:${colors(i)}`)
+//     .html(d => `
+//       <span class="swatch"></span>
+//       ${d.label} <em>(${d.value})</em>
+//     `);
+// }
+
+function renderPieChart(projectsGiven) {
   let rolledData = d3.rollups(
-    projectsToRender,
+    projectsGiven,
     v => v.length,
     d => d.year
   );
@@ -30,14 +59,27 @@ function renderPieChart(projectsToRender) {
     return { value: count, label: year };
   });
 
+  let arcGenerator = d3.arc()
+    .innerRadius(0)
+    .outerRadius(50);
+
+  let sliceGenerator = d3.pie()
+    .value(d => d.value);
+
   let arcData = sliceGenerator(data);
 
+  // clear old chart and legend
+  svg.selectAll('path').remove();
+  legend.selectAll('li').remove();
+
+  // render pie slices
   svg.selectAll('path')
     .data(arcData)
     .join('path')
     .attr('d', arcGenerator)
     .attr('fill', (d, i) => colors(i));
 
+  // render legend
   legend.selectAll('li')
     .data(data)
     .join('li')
@@ -47,6 +89,7 @@ function renderPieChart(projectsToRender) {
       ${d.label} <em>(${d.value})</em>
     `);
 }
+
 
 function updateDisplay() {
 //   filteredProjects = projects.filter((project) => {
@@ -65,7 +108,18 @@ function updateDisplay() {
 updateDisplay();
 
 // Search interaction
+// searchInput.addEventListener('input', (event) => {
+//   query = event.target.value;
+//   updateDisplay();
+// });
 searchInput.addEventListener('input', (event) => {
   query = event.target.value;
-  updateDisplay();
+
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
+
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+  renderPieChart(filteredProjects);
 });
