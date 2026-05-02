@@ -278,3 +278,27 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+/* Legend container */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 0.5em;
+  margin: 2em 0;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+
+/* Each item */
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Color box */
+.legend .swatch {
+  width: 1em;
+  height: 1em;
+  background-color: var(--color);
+  border-radius: 50%;
+}
