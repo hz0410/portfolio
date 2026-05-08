@@ -334,3 +334,21 @@ svg:has(path:hover) path:not(:hover) {
 .selected:is(path) {
   fill: var(--color);
 }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9em, 1fr));
+  gap: 1em;
+  margin-block: 2em;
+}
+
+.stats dt {
+  color: #6b7280;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 2.5rem;
+}
