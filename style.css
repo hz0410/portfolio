@@ -403,3 +403,13 @@ circle {
 circle:hover {
   transform: scale(1.5);
 }
+
+dl.info {
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}

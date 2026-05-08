@@ -209,12 +209,20 @@ function renderScatterPlot(data, commits) {
     .attr('cy', d => yScale(d.hourFrac))
     .attr('r', 5)
     .attr('fill', 'steelblue')
+
+    // .on('mouseenter', (event, commit) => {
+    //     renderTooltipContent(commit);
+    //     document.getElementById('commit-tooltip').classList.add('visible');
+    // })
+    // .on('mouseleave', () => {
+    //     document.getElementById('commit-tooltip').classList.remove('visible');
+    // });
     .on('mouseenter', (event, commit) => {
         renderTooltipContent(commit);
-        document.getElementById('commit-tooltip').classList.add('visible');
+        updateTooltipVisibility(true);
     })
     .on('mouseleave', () => {
-        document.getElementById('commit-tooltip').classList.remove('visible');
+        updateTooltipVisibility(false);
     });
 }
 
@@ -241,6 +249,12 @@ function renderTooltipContent(commit) {
   author.textContent = commit.author;
   lines.textContent = commit.totalLines;
 }
+
+function updateTooltipVisibility(isVisible) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.hidden = !isVisible;
+}
+
 
 let data = await loadData();
 let commits = processCommits(data);
