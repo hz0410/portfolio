@@ -202,27 +202,34 @@ function renderScatterPlot(data, commits) {
 //     .attr('r', 5)
 //     .attr('fill', 'steelblue');
 
+    const [minLines, maxLines] = d3.extent(commits, d => d.totalLines);
+
+    const rScale = d3.scaleLinear()
+    .domain([minLines, maxLines])
+    .range([2, 30]); // you can tweak this
+
     dots.selectAll('circle')
     .data(commits)
     .join('circle')
     .attr('cx', d => xScale(d.datetime))
     .attr('cy', d => yScale(d.hourFrac))
-    .attr('r', 5)
+    .attr('r', d => rScale(d.totalLines))   // ✅ NEW
     .attr('fill', 'steelblue')
+    .style('fill-opacity', 0.7)             // ✅ NEW
 
-    // .on('mouseenter', (event, commit) => {
-    //     renderTooltipContent(commit);
-    //     document.getElementById('commit-tooltip').classList.add('visible');
-    // })
-    // .on('mouseleave', () => {
-    //     document.getElementById('commit-tooltip').classList.remove('visible');
-    // });
     .on('mouseenter', (event, commit) => {
+        d3.select(event.currentTarget)
+        .style('fill-opacity', 1);          // ✅ NEW
+
         renderTooltipContent(commit);
         updateTooltipVisibility(true);
         updateTooltipPosition(event);
     })
-    .on('mouseleave', () => {
+
+    .on('mouseleave', (event) => {
+        d3.select(event.currentTarget)
+        .style('fill-opacity', 0.7);        // ✅ NEW
+
         updateTooltipVisibility(false);
     });
 }
