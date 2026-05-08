@@ -363,3 +363,44 @@ svg:has(path:hover) path:not(:hover) {
 .gridlines path {
   display: none;
 }
+
+.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25em 1em;
+}
+
+.info dt {
+  color: #6b7280;
+  font-weight: bold;
+}
+
+.info dd {
+  margin: 0;
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 1em;
+  box-shadow: 0 4px 12px #0002;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
