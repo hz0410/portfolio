@@ -300,3 +300,17 @@ circle.selected {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+#scatter-story .step {
+  margin-bottom: 1rem;
+}
+
+#scatter-plot {
+  background: canvas;
+  z-index: 1;
+}
+
+#scatter-plot h2 {
+  margin-top: 0;
+}
