@@ -1,0 +1,302 @@
+:root {
+  --color-accent: #6b7280;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 100%/1.5 system-ui;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 4rem;
+}
+
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.8rem;
+}
+
+.color-scheme select {
+  font: inherit;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 70%);
+  background-color: canvas;
+  color: canvastext;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+h1 {
+  font-size: 400%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  padding: 0.5em;
+  text-decoration: none;
+  color: inherit;
+}
+
+nav a.current {
+  border-bottom: 0.4em solid var(--border-color);
+  padding-bottom: 0.1em;
+  font-weight: bold;
+}
+
+nav a:hover {
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+.filter-control {
+  margin: 1.5rem 0;
+}
+
+.filter-control label {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+#commit-progress {
+  flex: 1;
+}
+
+#commit-time {
+  margin-left: auto;
+  min-width: 18em;
+  text-align: right;
+  color: var(--color-accent);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1em;
+  margin-block: 2em;
+}
+
+.stats div {
+  display: grid;
+  gap: 0.15em;
+}
+
+.stats dt {
+  color: #6b7280;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+#scrolly-1 > * {
+  flex: 1;
+}
+
+#scatter-story {
+  position: relative;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;
+  padding-top: 1rem;
+}
+
+#chart svg {
+  width: 100%;
+  height: auto;
+}
+
+.step {
+  padding: 1rem;
+  padding-bottom: 70vh;
+  border-left: 0.25rem solid transparent;
+  color: color-mix(in oklch, canvastext, canvas 25%);
+}
+
+.step.is-active {
+  border-left-color: var(--color-accent);
+  color: canvastext;
+  background: color-mix(in oklch, var(--color-accent), canvas 90%);
+}
+
+.gridlines line {
+  stroke: #ddd;
+  stroke-opacity: 0.5;
+}
+
+.gridlines path {
+  display: none;
+}
+
+circle {
+  transition: all 200ms, r calc(var(--r) * 100ms);
+  transform-origin: center;
+  transform-box: fill-box;
+
+  @starting-style {
+    r: 0;
+  }
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25em 1em;
+}
+
+.info dt {
+  color: #6b7280;
+  font-weight: bold;
+}
+
+.info dd {
+  margin: 0;
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 10;
+  background-color: color-mix(in oklch, canvas, transparent 5%);
+  box-shadow: 0 4px 12px #0003;
+  border-radius: 0.5em;
+  padding: 1em;
+  backdrop-filter: blur(6px);
+}
+
+.tooltip[hidden] {
+  display: none;
+}
+
+#files {
+  display: grid;
+  grid-template-columns: minmax(12em, 1fr) 4fr;
+  gap: 0.25em 1em;
+  margin-top: 1rem;
+}
+
+#files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  padding: 0.35em 0;
+  border-bottom: 1px solid color-mix(in oklch, canvastext, canvas 85%);
+}
+
+#files dt {
+  grid-column: 1;
+}
+
+#files dt small {
+  display: block;
+  opacity: 0.65;
+  font-size: 0.8rem;
+}
+
+#files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+.loc {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  background: var(--color, steelblue);
+  border-radius: 50%;
+}
+
+@media (max-width: 800px) {
+  #scrolly-1 {
+    display: block;
+  }
+
+  #scatter-plot {
+    position: relative;
+    height: auto;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
