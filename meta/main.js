@@ -265,8 +265,21 @@ function updateTooltipPosition(event) {
 }
 
 function createBrushSelector(svg) {
-  svg.call(d3.brush().on('start brush end', brushed));
-  svg.selectAll('.dots, .overlay ~ *').raise();
+  // Apply the brush to a <g> element instead of the root <svg>.
+  // Also give it an explicit extent so D3 does not try to infer it from the SVG.
+  const brush = d3
+    .brush()
+    .extent([
+      [usableArea.left, usableArea.top],
+      [usableArea.right, usableArea.bottom],
+    ])
+    .on('start brush end', brushed);
+
+  svg.append('g')
+    .attr('class', 'brush')
+    .call(brush);
+
+  svg.select('g.dots').raise();
 }
 
 function brushed(event) {
