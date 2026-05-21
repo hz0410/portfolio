@@ -9,31 +9,41 @@
 <body>
   <h1>Meta</h1>
   <p>This page includes stats about the code of this website.</p>
+
+  <label class="commit-slider">
+    Show commits until:
+    <input id="commit-progress" type="range" min="0" max="100" value="100" />
+    <time id="commit-time"></time>
+  </label>
+
   <div id="stats"></div>
+
   <h2>Commits by time of day</h2>
   <div id="chart"></div>
   <p id="selection-count">No commits selected</p>
   <dl id="language-breakdown" class="stats"></dl>
 
-    <dl id="commit-tooltip" class="info tooltip" hidden>
+  <section id="file-section">
+    <p>Each dot below represents one line of code. Files are sorted by number of lines.</p>
+    <dl id="files"></dl>
+  </section>
+
+  <dl id="commit-tooltip" class="info tooltip" hidden>
     <dt>Commit</dt>
-    <dd>
-        <a href="" id="commit-link" target="_blank"></a>
-    </dd>
+    <dd><a href="" id="commit-link" target="_blank"></a></dd>
 
     <dt>Date</dt>
     <dd id="commit-date"></dd>
 
     <dt>Time</dt>
-    <dd id="commit-time"></dd>
+    <dd id="commit-time-tooltip"></dd>
 
     <dt>Author</dt>
     <dd id="commit-author"></dd>
 
     <dt>Lines edited</dt>
     <dd id="commit-lines"></dd>
-    </dl>
-
+  </dl>
 
   <script src="../global.js" type="module"></script>
 </body>
