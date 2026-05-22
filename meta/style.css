@@ -128,12 +128,29 @@ nav a:hover {
   font-weight: 700;
 }
 
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
 
 #scrolly-1 > * {
   flex: 1;
 }
 
+#scatter-story {
+  position: relative;
+}
 
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;
+  padding-top: 1rem;
+}
 
 #chart svg {
   width: 100%;
@@ -283,74 +300,3 @@ circle.selected {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-
-
-
-#scatter-plot h2 {
-  margin-top: 0;
-}
-
-
-/* Step 3 layout: object log/story on the left, scatterplot on the right */
-#scrolly-1 {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) minmax(420px, 1.4fr);
-  gap: 2rem;
-  align-items: start;
-  margin-block: 2rem;
-}
-
-#scatter-story {
-  grid-column: 1;
-}
-
-#scatter-story .step {
-  min-height: 55vh;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-left: 4px solid transparent;
-  opacity: 0.45;
-  transition: opacity 200ms ease, border-color 200ms ease, background 200ms ease;
-}
-
-#scatter-story .step.is-active {
-  opacity: 1;
-  border-left-color: var(--color-accent);
-  background: color-mix(in oklch, var(--color-accent), canvas 88%);
-}
-
-#scatter-plot {
-  grid-column: 2;
-  position: sticky;
-  top: 1rem;
-  align-self: start;
-  background: canvas;
-  z-index: 1;
-}
-
-#scatter-plot h2 {
-  margin-top: 0;
-}
-
-#chart svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media (max-width: 850px) {
-  #scrolly-1 {
-    display: block;
-  }
-
-  #scatter-plot {
-    position: relative;
-    top: auto;
-  }
-
-  #scatter-story .step {
-    min-height: auto;
-  }
-}
-
