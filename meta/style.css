@@ -300,3 +300,13 @@ circle.selected {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+/* Place file race section above graph */
+#file-section {
+  margin-block: 2rem 3rem;
+}
+
+#scrolly-1 {
+  margin-top: 1rem;
+}
