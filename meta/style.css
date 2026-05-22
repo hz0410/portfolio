@@ -286,27 +286,43 @@ circle.selected {
   border-radius: 50%;
 }
 
-@media (max-width: 800px) {
-  #scrolly-1 {
-    display: block;
-  }
 
-  #scatter-plot {
-    position: relative;
-    height: auto;
-  }
-
-  .stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* Lab 8 Step 3: Scrollytelling layout
+   Commit text appears on the left, and the scatterplot stays visible on the right
+   while scrolling through the commit story. */
+#scrolly-1 {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.9fr) minmax(28rem, 1.6fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2rem;
 }
 
+#scatter-story {
+  grid-column: 1;
+}
 
 #scatter-story .step {
+  min-height: 55vh;
+  padding: 1rem;
   margin-bottom: 1rem;
+  border-left: 4px solid transparent;
+  opacity: 0.45;
+  transition: opacity 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+
+#scatter-story .step.is-active {
+  opacity: 1;
+  border-left-color: var(--color-accent);
+  background: color-mix(in oklch, var(--color-accent), canvas 88%);
 }
 
 #scatter-plot {
+  grid-column: 2;
+  position: sticky;
+  top: 4rem;
+  height: calc(100vh - 5rem);
+  align-self: start;
   background: canvas;
   z-index: 1;
 }
@@ -314,3 +330,30 @@ circle.selected {
 #scatter-plot h2 {
   margin-top: 0;
 }
+
+#chart svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Keep the files section below the scrollytelling section */
+#file-section {
+  margin-top: 3rem;
+}
+
+@media (max-width: 800px) {
+  #scrolly-1 {
+    display: block;
+  }
+
+  #scatter-plot {
+    position: relative;
+    top: auto;
+    height: auto;
+  }
+
+  #scatter-story .step {
+    min-height: auto;
+  }
+}
+

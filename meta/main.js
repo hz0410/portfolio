@@ -1,5 +1,4 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
-import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 let data;
 let commits;
@@ -265,21 +264,8 @@ function updateTooltipPosition(event) {
 }
 
 function createBrushSelector(svg) {
-  // Apply the brush to a <g> element instead of the root <svg>.
-  // Also give it an explicit extent so D3 does not try to infer it from the SVG.
-  const brush = d3
-    .brush()
-    .extent([
-      [usableArea.left, usableArea.top],
-      [usableArea.right, usableArea.bottom],
-    ])
-    .on('start brush end', brushed);
-
-  svg.append('g')
-    .attr('class', 'brush')
-    .call(brush);
-
-  svg.select('g.dots').raise();
+  svg.call(d3.brush().on('start brush end', brushed));
+  svg.selectAll('.dots, .overlay ~ *').raise();
 }
 
 function brushed(event) {
@@ -363,71 +349,6 @@ function setupCommitSlider() {
   });
 }
 
-
-function renderCommitStory() {
-  d3.select('#scatter-story')
-    .selectAll('.step')
-    .data(commits, (d) => d.id)
-    .join('div')
-    .attr('class', 'step')
-    .html(
-      (d, i) => `
-        <p>
-          On ${d.datetime.toLocaleString('en', {
-            dateStyle: 'full',
-            timeStyle: 'short',
-          })}, I made
-          <a href="${d.url}" target="_blank">
-            ${i > 0 ? 'another commit' : 'my first commit'}
-          </a>.
-        </p>
-        <p>
-          I edited <strong>${d.totalLines}</strong> lines across
-          <strong>${
-            d3.rollups(
-              d.lines,
-              (D) => D.length,
-              (line) => line.file,
-            ).length
-          }</strong> files.
-        </p>
-      `,
-    );
-}
-
-function setupScrollytelling() {
-  const slider = document.querySelector('#commit-progress');
-
-  function onStepEnter(response) {
-    const commit = response.element.__data__;
-    if (!commit) return;
-
-    selectedTime = commit.datetime;
-
-    if (slider && timeScale) {
-      slider.value = timeScale.invert(selectedTime);
-    }
-
-    d3.selectAll('.step').classed('is-active', false);
-    d3.select(response.element).classed('is-active', true);
-
-    updateAllViews();
-  }
-
-  const scroller = scrollama();
-
-  scroller
-    .setup({
-      container: '#scrolly-1',
-      step: '#scrolly-1 .step',
-      offset: 0.5,
-    })
-    .onStepEnter(onStepEnter);
-
-  window.addEventListener('resize', () => scroller.resize());
-}
-
-
 data = await loadData();
 commits = processCommits(data);
 
@@ -437,7 +358,5 @@ renderCommitInfo(filteredData, filteredCommits);
 renderScatterPlot();
 updateFileDisplay();
 updateTimeDisplay();
-renderCommitStory();
-setupScrollytelling();
 
 console.log(commits);
