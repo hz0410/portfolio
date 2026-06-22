@@ -1,0 +1,45 @@
+/* === Resume page refinements (append to style.css) === */
+
+.resume-header {
+  text-align: center;
+  border-bottom: 1px solid color-mix(in oklch, canvastext, canvas 85%);
+  padding-bottom: 1.5rem;
+}
+
+.resume-header h1 {
+  margin-bottom: 0.25rem;
+}
+
+.resume-header .resume-summary {
+  margin: 0.75rem auto 1rem;
+  text-align: left;
+}
+
+.resume section {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.resume section h2 {
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.4rem;
+}
+
+.resume article {
+  padding-block: 0.5rem;
+}
+
+.resume article + article {
+  border-top: 1px dashed color-mix(in oklch, canvastext, canvas 88%);
+  padding-top: 1rem;
+}
+
+@media (min-width: 700px) {
+  .resume {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resume section#education,
+  .resume section#publications {
+    grid-column: 1 / -1;
+  }
+}
